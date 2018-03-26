@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 
 public class ProductPO {
     static public WebElement addToCartButton() {
-        return SeleniumWebDriver.driver.findElement(By.xpath("//*[@id=\"product_top\"]/div[1]/div[2]/div/div[2]/input"));
+        return SeleniumWebDriver.driver.findElement(By.xpath("//*[@class=\"orderbox\"] //*[@name=\"button\"]"));
     }
     static public WebElement toShopcart() {
         return SeleniumWebDriver.driver.findElement(By.xpath("//*[@id=\"atc_b_tsc\"]"));

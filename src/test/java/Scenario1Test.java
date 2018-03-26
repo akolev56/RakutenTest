@@ -17,7 +17,6 @@ public class Scenario1Test extends Tools{
         HomePagePO.secondSuggestion().click();
         assertTextPresent("Ihre Suche nach \""+suggestionText+"\"");
 
-        SeleniumWebDriver.getDriver().quit();
     }
     @After
     public void tearDown(){
