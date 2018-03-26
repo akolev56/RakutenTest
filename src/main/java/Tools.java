@@ -1,8 +1,6 @@
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
 
 
 import java.util.concurrent.TimeUnit;
@@ -10,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class Tools{
 
 
-    static synchronized public void buildDriver() {
+    static public void buildDriver() {
 
-        SeleniumWebDriver.setUp("https://www.rakuten.de");
+        SeleniumWebDriver.setUp();
         SeleniumWebDriver.getDriver();
         SeleniumWebDriver.getDriver().manage().window().maximize();
         SeleniumWebDriver.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -20,7 +18,9 @@ public class Tools{
         SeleniumWebDriver.getDriver().manage().deleteAllCookies();
     }
 
-
+   static public void selectDropdownOption(String xPath,String byValue) {
+        new Select(SeleniumWebDriver.driver.findElement(By.xpath(xPath))).selectByValue(byValue);
+    }
 
     public boolean verifyTextPresent(final String text) {
         boolean isPresent = false;
@@ -40,20 +40,8 @@ public class Tools{
         return false;
     }
 
-    public boolean verifyWebElementPresent(By by) {
-
-        WebDriverWait wait = new WebDriverWait(SeleniumWebDriver.getDriver(), 30);
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
-
-        if (element == null) return false;
-        else return true;
-
-    }
-
-
     public void assertTextPresent(String text) {
         Assert.assertTrue("The text '" + text + "' is not present on the page, please check!"
                 , verifyTextPresent(text));
     }
-
 }
